@@ -1,9 +1,7 @@
 import { useGate, useList } from 'effector-react';
 import { memo } from 'react';
 
-import { productsModel } from '#/entities/product';
-import { ProductsGate } from '#/entities/product/model';
-import { TableRow } from '#/entities/product/ui/row';
+import { ProductsGate, productsModel, TableRow } from '#/entities';
 
 export const ProductsTable = memo(() => {
   const productsList = useList(
