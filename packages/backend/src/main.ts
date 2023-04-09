@@ -41,10 +41,8 @@ const initApp = async () => {
     }),
   );
   const config = new DocumentBuilder()
-    .setTitle('Chess API')
-    .setDescription(
-      'An elegant and powerful API for managing chess games, tournaments, players, and analytics. Experience seamless integration with your favorite chess applications, tools, and platforms.',
-    )
+    .setTitle('Todo API')
+    .setDescription('An elegant and powerful API for CRUD managing.')
     .setVersion('1.0')
     .build();
 

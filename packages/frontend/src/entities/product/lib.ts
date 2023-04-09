@@ -21,4 +21,4 @@ const deleteProduct = async (id: number) => {
   return await createRequest(`/posts/${id}`, 'delete');
 };
 
-export { createProduct, deleteProduct, getProduct, getProducts, updateProduct };
+export const productsApi = { createProduct, deleteProduct, getProduct, getProducts, updateProduct };

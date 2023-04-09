@@ -1,4 +1,3 @@
 export * from './actions';
-export * as postApi from './lib';
-export * as postModel from './model';
+export * as productsModel from './model';
 export * from './ui';
