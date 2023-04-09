@@ -5,8 +5,8 @@ import { productsApi } from '#/entities/product/lib';
 
 export const createProductForm = createForm({
   fields: {
-    name: {
-      init: '', // field's store initial value
+    productName: {
+      init: '',
       rules: [
         {
           name: 'required',
@@ -21,15 +21,15 @@ export const createProductForm = createForm({
         {
           name: 'required',
           validator: (value: string) => !!value,
-          errorText: 'name is required field',
+          errorText: 'brand is required field',
         },
       ],
     },
     price: {
-      init: '0',
+      init: 0,
     },
     category: {
-      init: [],
+      init: 'PC',
     },
     description: {
       init: '',
@@ -37,7 +37,7 @@ export const createProductForm = createForm({
         {
           name: 'required',
           validator: (value: string) => !!value,
-          errorText: 'name is required field',
+          errorText: 'description is required field',
         },
       ],
     },
@@ -49,6 +49,10 @@ export const createProductFx = createEffect(productsApi.createProduct);
 
 sample({
   clock: createProductForm.formValidated,
-  source: createProductFx,
   target: createProductFx,
+});
+
+sample({
+  clock: createProductFx.done,
+  target: createProductForm.reset,
 });

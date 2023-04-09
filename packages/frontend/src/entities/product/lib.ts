@@ -1,4 +1,4 @@
-import { ApiResponse, createRequest } from '#/shared/api';
+import { createRequest } from '#/shared/api';
 import { Product } from '#/shared/types';
 
 const getProducts = async (): Promise<Product[]> => {
@@ -6,20 +6,25 @@ const getProducts = async (): Promise<Product[]> => {
   return res.data;
 };
 
-const createProduct = async (data: Product): Promise<ApiResponse<Product>> => {
-  return await createRequest('/products', 'post', data);
+const createProduct = async (data: Product): Promise<Product> => {
+  const res = await createRequest<Product, Product>('/products', 'post', data);
+  return res.data;
 };
 
-const getProduct = async (id: number): Promise<ApiResponse<Product>> => {
-  return await createRequest(`/posts/${id}`);
+const getProduct = async (id: number): Promise<Product> => {
+  const res = await createRequest<Product>(`/products/${id}`);
+  return res.data;
 };
 
-const updateProduct = async (id: number, data: Product): Promise<ApiResponse<Product>> => {
-  return await createRequest(`/posts/${id}`, 'put', data);
+const updateProduct = async (id: number, data: Product): Promise<Product> => {
+  const res = await createRequest<Product, Product>(`/products/${id}`, 'put', data);
+
+  return res.data;
 };
 
 const deleteProduct = async (id: number) => {
-  return await createRequest(`/posts/${id}`, 'delete');
+  const res = await createRequest(`/products/${id}`, 'delete');
+  return res.data;
 };
 
 export const productsApi = { createProduct, deleteProduct, getProduct, getProducts, updateProduct };

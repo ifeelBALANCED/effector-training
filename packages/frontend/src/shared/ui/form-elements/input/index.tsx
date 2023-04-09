@@ -16,12 +16,15 @@ export type InputProps = {
   className?: string;
 } & Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'size'>;
 
-// Using maps so that the full Tailwind classes can be seen for purging
-// see https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-
-const sizeMap: { [key in InputSize]: string } = {
+const sizeMap: Record<InputSize, string> = {
   medium: 'p-2 text-base',
   large: 'p-4 text-base',
+};
+
+const inputStyles = {
+  base: 'bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5',
+  error: 'border-red-600 focus:border-red-600 focus:ring-red-600',
+  default: 'border-gray-300',
 };
 
 export const FormInput = forwardRef<HTMLInputElement, InputProps>(
@@ -39,11 +42,22 @@ export const FormInput = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    const classes = classNames({
+      [inputStyles.base]: true,
+      [sizeMap[size]]: true,
+      [inputStyles.error]: !!errors,
+      [inputStyles.default]: !errors,
+      [className]: !!className,
+    });
+
     return (
       <div>
         <label
           htmlFor={id}
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className={classNames('block mb-2 text-sm font-medium dark:text-white', {
+            'text-red-600': !!errors,
+            'text-gray-900': !errors,
+          })}
         >
           {label}
         </label>
@@ -52,13 +66,8 @@ export const FormInput = forwardRef<HTMLInputElement, InputProps>(
           id={id}
           name={name}
           type={type}
-          aria-label={label}
           placeholder={placeholder}
-          className={classNames([
-            'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
-            sizeMap[size],
-            className,
-          ])}
+          className={classes}
           {...props}
         />
         {errors && <ErrorMessage message={errors} />}

@@ -1,1 +1,1 @@
-export * from './ky';
+export * from './axios';

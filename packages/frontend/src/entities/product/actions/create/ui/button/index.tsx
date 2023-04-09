@@ -1,4 +1,4 @@
-import { CreateProductForm } from '#/entities/product/actions/create/ui/form';
+import { CreateProductForm } from '../form';
 
 export const CreateProduct = () => {
   return (

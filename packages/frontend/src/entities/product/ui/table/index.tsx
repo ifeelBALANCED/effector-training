@@ -1,24 +1,15 @@
 import { useGate, useList } from 'effector-react';
 import { memo } from 'react';
 
-import { ProductsGate, productsModel, TableRow } from '#/entities';
+import { productsModel, TableRow } from '#/entities';
+import { ProductsGate } from '#/entities/product/model';
 
 export const ProductsTable = memo(() => {
-  const productsList = useList(
-    productsModel.$products,
-    ({ id, productName, category, brand, description, price }) => (
-      <TableRow
-        key={id}
-        productName={productName}
-        category={category}
-        brand={brand}
-        description={description}
-        price={price}
-        id={id}
-      />
-    )
-  );
   useGate(ProductsGate);
+
+  const productsList = useList(productsModel.$products, ({ id, ...product }) => (
+    <TableRow key={id} {...product} />
+  ));
 
   return (
     <div>

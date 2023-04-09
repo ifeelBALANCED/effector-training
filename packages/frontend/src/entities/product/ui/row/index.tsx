@@ -6,7 +6,7 @@ import { RowSkeleton } from '#/entities/product/ui/row/row-skeleton';
 import { Product } from '#/shared/types';
 
 export const TableRow = memo(({ productName, category, brand, description, price }: Product) => {
-  const isLoading = useStore(productsModel.isProductLoading);
+  const isLoading = useStore(productsModel.isProductsLoading);
 
   if (isLoading) {
     return <RowSkeleton />;

@@ -1,4 +1,5 @@
 export type Product = {
+  id?: string;
   productName: string;
   category: string;
   brand: string;
@@ -6,5 +7,4 @@ export type Product = {
   price: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  id: string;
 };

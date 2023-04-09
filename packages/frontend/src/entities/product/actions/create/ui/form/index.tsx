@@ -2,15 +2,12 @@ import { useForm } from 'effector-forms';
 import { useStore } from 'effector-react';
 import { FormEvent } from 'react';
 
-import { productsModel } from '#/entities/product';
-import { createProductForm } from '#/entities/product/actions/create/model';
-import { FormInput } from '#/shared/ui';
-import { FormSelect } from '#/shared/ui/form-elements/select';
-import { FormTextarea } from '#/shared/ui/form-elements/textarea';
+import { createProductModel, productsModel } from '#/entities/product';
+import { FormInput, FormSelect, FormTextarea } from '#/shared/ui';
 
 export const CreateProductForm = () => {
-  const { fields, submit, eachValid, errorText } = useForm(createProductForm);
-  const pending = useStore(productsModel.isProductLoading);
+  const { fields, submit, eachValid, errorText } = useForm(createProductModel.createProductForm);
+  const pending = useStore(productsModel.isProductsLoading);
   const categories = useStore(productsModel.$categories);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -22,13 +19,13 @@ export const CreateProductForm = () => {
     <form onSubmit={onSubmit}>
       <div className="grid gap-4 mb-4 sm:grid-cols-2">
         <FormInput
-          id={fields.name.value}
+          id={fields.productName.value}
           label="Name"
           placeholder="Product Name"
-          errors={errorText('name')}
-          value={fields.name.value}
-          name={fields.name.name}
-          onChange={(e) => fields.name.onChange(e.target.value)}
+          errors={errorText('productName')}
+          value={fields.productName.value}
+          name={fields.productName.name}
+          onChange={(e) => fields.productName.onChange(e.target.value)}
         />
         <FormInput
           id={fields.brand.value}
@@ -40,20 +37,22 @@ export const CreateProductForm = () => {
           onChange={(e) => fields.brand.onChange(e.target.value)}
         />
         <FormInput
-          id={fields.price.value}
+          id={fields.price.value?.toString()}
           label="Price"
           placeholder="0"
           errors={errorText('price')}
           type="number"
           value={fields.price.value}
           name={fields.price.name}
-          onChange={(e) => fields.price.onChange(e.target.value)}
+          onChange={(e) => fields.price.onChange(Number(e.target.value))}
         />
         <FormSelect
           id={fields.category.name}
           name={fields.category.name}
+          value={fields.category.value}
           label="Categories"
           options={categories}
+          onChange={(e) => fields.category.onChange(e.target.value)}
         />
         <FormTextarea
           id={fields.description.name}
@@ -81,7 +80,7 @@ export const CreateProductForm = () => {
             clipRule="evenodd"
           />
         </svg>
-        Add new product
+        {pending ? 'Creating...' : 'Add new product'}
       </button>
     </form>
   );
