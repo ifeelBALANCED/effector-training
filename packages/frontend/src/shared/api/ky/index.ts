@@ -1,4 +1,4 @@
-import ky from 'ky';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { API_URL } from '#/shared/constants';
 
@@ -11,7 +11,8 @@ export interface ApiResponse<T> {
   status: number;
 }
 
-export const original = ky.create({
+export const axiosInstance = axios.create({
+  baseURL: API_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -25,13 +26,13 @@ export const createRequest = async <T, B = undefined>(
   method: RequestMethod = 'get',
   body?: B
 ): Promise<ApiResponse<T>> => {
-  const options = {
-    method: method,
-    json: body,
+  const options: AxiosRequestConfig = {
+    method,
+    data: body,
   };
 
-  const response = await original(`${API_URL}${url}`, options);
-  const data: T = await response.json();
+  const response: AxiosResponse = await axiosInstance(url, options);
+  const data: T = response.data;
   const status: number = response.status;
 
   return {
