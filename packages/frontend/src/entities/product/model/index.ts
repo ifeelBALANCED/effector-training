@@ -1,4 +1,5 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createStore, sample } from 'effector';
+import { createGate } from 'effector-react';
 
 import { Product } from '#/shared/types';
 
@@ -10,7 +11,16 @@ export const $products = createStore<Product[]>([]).on(
   getProductsFx.doneData,
   (_, products) => products
 );
+export const ProductsGate = createGate();
 
-getProductsFx.doneData.watch(console.log);
+export const isProductLoading = getProductsFx.pending;
 
-await getProductsFx();
+sample({
+  source: ProductsGate.open,
+  target: getProductsFx,
+});
+
+export const $categories = $products.map((products) => {
+  const categoriesSet = new Set(products.map((product) => product.category));
+  return Array.from(categoriesSet);
+});

@@ -1,16 +1,27 @@
-import { useEvent, useStore } from 'effector-react';
-import { useEffect } from 'react';
+import { useGate, useList } from 'effector-react';
+import { memo } from 'react';
 
-import { DeleteProduct, PreviewProduct, productsModel, UpdateProduct } from '#/entities/product';
+import { productsModel } from '#/entities/product';
+import { ProductsGate } from '#/entities/product/model';
+import { TableRow } from '#/entities/product/ui/row';
 
-export const ProductsTable = () => {
-  const getProducts = useEvent(productsModel.getProductsFx);
-  const products = useStore(productsModel.$products);
+export const ProductsTable = memo(() => {
+  const productsList = useList(
+    productsModel.$products,
+    ({ id, productName, category, brand, description, price }) => (
+      <TableRow
+        key={id}
+        productName={productName}
+        category={category}
+        brand={brand}
+        description={description}
+        price={price}
+        id={id}
+      />
+    )
+  );
+  useGate(ProductsGate);
 
-  useEffect(() => {
-    getProducts();
-    console.log(products);
-  }, [getProducts, products]);
   return (
     <div>
       <div className="overflow-x-auto">
@@ -37,29 +48,7 @@ export const ProductsTable = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="border-b dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple iMac 27
-              </th>
-              <td className="px-4 py-3">PC</td>
-              <td className="px-4 py-3">Apple</td>
-              <td className="px-4 py-3 max-w-[12rem] truncate">
-                What is a product description? A product description describes a product.
-              </td>
-              <td className="px-4 py-3">$2999</td>
-              <td className="flex items-center">
-                <div className="py-3 px-4 flex items-center w-full justify-around">
-                  <UpdateProduct />
-                  <PreviewProduct />
-                  <DeleteProduct />
-                </div>
-              </td>
-            </tr>
-          </tbody>
+          <tbody>{productsList}</tbody>
         </table>
       </div>
       <nav
@@ -141,4 +130,6 @@ export const ProductsTable = () => {
       </nav>
     </div>
   );
-};
+});
+
+ProductsTable.displayName = 'ProductsTable';

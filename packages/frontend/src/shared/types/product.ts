@@ -6,4 +6,5 @@ export type Product = {
   price: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  id: string;
 };
