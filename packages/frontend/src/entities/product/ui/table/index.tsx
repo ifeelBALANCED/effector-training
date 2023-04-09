@@ -1,6 +1,16 @@
-import { DeleteProduct, PreviewProduct, UpdateProduct } from '#/entities/product';
+import { useEvent, useStore } from 'effector-react';
+import { useEffect } from 'react';
+
+import { DeleteProduct, PreviewProduct, productsModel, UpdateProduct } from '#/entities/product';
 
 export const ProductsTable = () => {
+  const getProducts = useEvent(productsModel.getProductsFx);
+  const products = useStore(productsModel.$products);
+
+  useEffect(() => {
+    getProducts();
+    console.log(products);
+  }, [getProducts, products]);
   return (
     <div>
       <div className="overflow-x-auto">

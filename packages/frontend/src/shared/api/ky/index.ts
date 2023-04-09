@@ -12,7 +12,6 @@ export interface ApiResponse<T> {
 }
 
 export const original = ky.create({
-  prefixUrl: API_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -31,7 +30,7 @@ export const createRequest = async <T, B = undefined>(
     json: body,
   };
 
-  const response = await original(url, options);
+  const response = await original(`${API_URL}${url}`, options);
   const data: T = await response.json();
   const status: number = response.status;
 

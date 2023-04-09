@@ -1,8 +1,9 @@
 import { ApiResponse, createRequest } from '#/shared/api';
 import { Product } from '#/shared/types';
 
-const getProducts = async (): Promise<ApiResponse<Product[]>> => {
-  return await createRequest('/posts');
+const getProducts = async (): Promise<Product[]> => {
+  const res = await createRequest<Product[]>('/posts');
+  return res.data;
 };
 
 const createProduct = async (data: Product): Promise<ApiResponse<Product>> => {
