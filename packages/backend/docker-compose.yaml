@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: effector-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./:/app"
+    env_file:
+      - .env
+    ports:
+      - "1776:1776"
+    networks:
+      - effector-network
+
+volumes:
+  effector_api_data:
+    name: effector_api_data
+
+networks:
+  effector-network:
+    driver: bridge
+    name: effector-network

@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  migrate:
+    container_name: effector-migrate
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - "./:/app"
+    networks:
+      - effector-network
+    env_file:
+      - .env
+    command: yarn run migrate:up
+
+volumes:
+  migrate_data:
+    name: effector_migrate_data
+
+networks:
+  effector-network:
+    driver: bridge
+    name: effector-network

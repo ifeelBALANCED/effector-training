@@ -1,113 +1,67 @@
-# Drop-in Replacement for [CRA](http://create-react-app.dev/) but powered by [Vite](https://vitejs.dev/)
+# Weber
 
-### Things in CRA, supported here:
+Social network, one of in-house FSD examples
 
-- Import SVG's directly as React Component via SVGR
-- Unit Testing via Jest & React Testing Library
-- ESLint Rules & Prettier
-- Tailwind
-- Absolute imports within `src` directory
+[![Feature-Sliced Design][shields-fsd-image]](https://feature-sliced.design/)
 
----
+# Tech stack
 
-### Extra Additions
+Node.js, Typescript
 
-- Conventional Commits using `Commitlint`
-- Run Lint Checks, TS Checks, Formatting & Unit Tests in Pre-commit via `lintstaged` & `husky`
+Monorepo management
 
----
+- Yarn
+- Nx and Lerna
 
-### Usage (with [degit](https://github.com/Rich-Harris/degit))
+Code quality
 
-```bash
-degit uchihamalolan/vite-react-ts your-app-name
-```
+- ESLint
+- Jest
+- Prettier
+- Commitlint and husky
 
----
+[Frontend](./packages/frontend)
 
-### Tech Stack - Overview
-
+- React 
+- Effector family (effector, patronum, atomic-router, farfetched)
 - Vite
-- React - Typscript
-  - react-error-boundary
-- pnpm
 
----
+[Backend](./packages/backend)
 
-### Editor Config
+- Nest
+- Prisma
 
-- vscode settings & extension recommendations
-- `.editorconfig` file
+[UI kit](./packages/ui)
 
----
+- ???
+- Rollup
 
-### Lint and Formatting
+# Getting started
 
-- Eslint & Prettier Configured
-- Lints
-  - react
-  - react hooks
-  - typescript
-  - jsx-a11y
+Prerequisites
 
----
+- Node.js 18
+- Yarn v1
 
-### Testing
+[Commands](./package.json)
 
-- Jest + React Testing Library (plus some plugins)
+| Command        | Action                                          |
+|----------------|-------------------------------------------------|
+| `yarn install` | Install dependencies and link monorepo packages |
+| `yarn develop` | Start local dev server                          |
+| `yarn format`  | Reformat code                                   |
+| `yarn lint`    | Lint code                                       |
+| `yarn test`    | Run test cases                                  |
+| `yarn build`   | Build project                                   |
+| `yarn serve`   | Preview build locally                           |
+| `yarn clean`   | Cleanup temporary directories                   |
 
----
+# Development
 
-### Styling
+...
 
-- TailwindCSS v3
+# License
 
----
+[MIT license](./license.md)
 
-# Other Recommended Libraries:
-
-### Forms
-
-- React Hook Form
-- Zod (for validations)
-
-### CSS-in-js
-
-- Emotion
-- Complie Time Atomic CSS-in-Js
-  - Stylex (Facebook, not Open Source yet)
-  - Linaria
-  - Compiled (still in beta)
-
-### Routing
-
-- React-Router-Dom
-- React Location
-
-### Date Manipulation
-
-- Dayjs
-- date-fns
-- Luxon
-
-### HTTP Client
-
-- Ky
-- Axios
-
-### Global Store (full-blown / lite-version)
-
-- Redux Toolkit / Zustand
-- Recoil / Jotai
-- Mobx / Valtio
-- xstate / robot
-
-### Server State
-
-- React Query
-- SWR
-- RTKQuery
-
-<!-- ### Eslint Plugins
-- [eslint-plugin-jest-dom](https://testing-library.com/docs/ecosystem-eslint-plugin-jest-dom)
-- [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin) -->
+[shields-fsd-image]: https://img.shields.io/badge/Feature--Sliced-Design-FFF?logoWidth=32&style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADJSURBVHgB7dfhCYMwEAXgd8UBHKHdoCOkI3SEblInaUfoCO0GbtCMkA3i5YeQH2I8OHIB/UAEeaiYx0koMhg6wVjHh8eeEVfgD0O0+xKaS0vwEuQHIvLQFGUclDUxiG6C/AhlqQNPGDrmQOrAA4Y61BV4jnzyC7U74PkFLvmFJjowoJ6AhRf4YruRP2FYC/CK9ny6zg/k/PrwijIOBSmT5Ys/uiY68Bbkw4aMz+75Q/OijIOyY2NiTroxuRcHi1BagrMg30OZeQknPcrQWNgGlSgAAAAASUVORK5CYII=

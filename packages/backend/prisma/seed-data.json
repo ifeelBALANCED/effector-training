@@ -1,0 +1,79 @@
+[
+  {
+    "productName": "Apple iMac 27",
+    "category": "PC",
+    "brand": "Apple",
+    "description": "What is a product description? A product description describes a product.",
+    "price": 2999
+  },
+  {
+    "productName": "Samsung Galaxy S21",
+    "category": "Smartphone",
+    "brand": "Samsung",
+    "description": "The Samsung Galaxy S21 is the latest flagship smartphone from Samsung, featuring a powerful processor, stunning display, and advanced camera system.",
+    "price": 999
+  },
+  {
+    "productName": "Sony WH-1000XM4",
+    "category": "Headphones",
+    "brand": "Sony",
+    "description": "The Sony WH-1000XM4 is a premium noise-cancelling headphones that provides an immersive audio experience and long battery life.",
+    "price": 349
+  },
+  {
+    "productName": "Canon EOS R5",
+    "category": "Camera",
+    "brand": "Canon",
+    "description": "The Canon EOS R5 is a high-end mirrorless camera that offers advanced features and exceptional image quality for professionals and enthusiasts alike.",
+    "price": 3899
+  },
+  {
+    "productName": "Microsoft Surface Laptop 4",
+    "category": "Laptop",
+    "brand": "Microsoft",
+    "description": "The Microsoft Surface Laptop 4 is a sleek and powerful laptop that offers an excellent typing experience and long battery life.",
+    "price": 1299
+  },
+  {
+    "productName": "Fitbit Sense",
+    "category": "Wearable",
+    "brand": "Fitbit",
+    "description": "The Fitbit Sense is a versatile smartwatch that offers advanced health tracking features and personalized insights to help you achieve your fitness goals.",
+    "price": 329
+  },
+  {
+    "productName": "Bose QuietComfort 35 II",
+    "category": "Headphones",
+    "brand": "Bose",
+    "description": "The Bose QuietComfort 35 II is a popular noise-cancelling headphones that provides excellent sound quality and comfort.",
+    "price": 299
+  },
+  {
+    "productName": "LG CX OLED",
+    "category": "TV",
+    "brand": "LG",
+    "description": "The LG CX OLED is a premium 4K TV that offers stunning image quality and a variety of advanced features.",
+    "price": 2299
+  },
+  {
+    "productName": "Dyson V11 Absolute",
+    "category": "Vacuum",
+    "brand": "Dyson",
+    "description": "The Dyson V11 Absolute is a powerful cordless vacuum that provides excellent cleaning performance and versatility.",
+    "price": 599
+  },
+  {
+    "productName": "Apple AirPods Pro",
+    "category": "Earbuds",
+    "brand": "Apple",
+    "description": "The Apple AirPods Pro is a premium wireless earbuds that offers excellent sound quality and noise-cancelling features.",
+    "price": 249
+  },
+  {
+    "productName": "HP Spectre x360",
+    "category": "Laptop",
+    "brand": "HP",
+    "description": "The HP Spectre x360 is a powerful and versatile 2-in-1 laptop that offers long battery life and excellent performance.",
+    "price": 1099
+  }
+]
