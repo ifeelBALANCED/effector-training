@@ -24,12 +24,12 @@ const initApp = async () => {
   );
 
   const configService = app.get(ConfigService);
-  const origin = configService.get<string>('ORIGIN');
   const port = configService.get<number>('SERVER_PORT');
   const host = configService.get<string>('HOST');
 
   const corsOrigin = {
-    origin,
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   };
   app.enableCors(corsOrigin);
