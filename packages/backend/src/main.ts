@@ -20,15 +20,17 @@ const initApp = async () => {
     new ExpressAdapter(),
     {
       logger: ['error', 'warn', 'log'],
+      cors: true,
     },
   );
 
   const configService = app.get(ConfigService);
   const port = configService.get<number>('SERVER_PORT');
+  const origin = configService.get<string>('ORIGIN');
   const host = configService.get<string>('HOST');
 
   const corsOrigin = {
-    origin: true,
+    origin,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   };
